@@ -1,0 +1,58 @@
+[
+  {
+    "trial": "S6",
+    "api_called": "GetCallerIdentity",
+    "outcome": "success",
+    "error_code": null,
+    "propagation_wait_s": 0,
+    "cloudtrail_event_time": "2026-11-21T06:19:30+00:00",
+    "path_a_latency_s": 3.7,
+    "path_b_log_latency_s": 13.7,
+    "path_b_alarm_latency_s": 36.0,
+    "key_after": [
+      "Inactive"
+    ]
+  },
+  {
+    "trial": "S7",
+    "api_called": "ListBuckets",
+    "outcome": "denied",
+    "error_code": "AccessDenied",
+    "propagation_wait_s": 0,
+    "cloudtrail_event_time": "2026-11-21T06:22:25+00:00",
+    "path_a_latency_s": null,
+    "path_b_log_latency_s": 54.9,
+    "path_b_alarm_latency_s": 101.0,
+    "key_after": [
+      "Active"
+    ]
+  },
+  {
+    "trial": "S8",
+    "api_called": "ListUsers",
+    "outcome": "denied",
+    "error_code": "AccessDenied",
+    "propagation_wait_s": 0,
+    "cloudtrail_event_time": "2026-11-21T06:31:42+00:00",
+    "path_a_latency_s": null,
+    "path_b_log_latency_s": 8.3,
+    "path_b_alarm_latency_s": 84.0,
+    "key_after": [
+      "Active"
+    ]
+  },
+  {
+    "trial": "S9",
+    "api_called": "DescribeInstances",
+    "outcome": "denied",
+    "error_code": "UnauthorizedOperation",
+    "propagation_wait_s": 0,
+    "cloudtrail_event_time": "2026-11-21T06:38:19+00:00",
+    "path_a_latency_s": null,
+    "path_b_log_latency_s": 21.6,
+    "path_b_alarm_latency_s": 47.0,
+    "key_after": [
+      "Active"
+    ]
+  }
+]

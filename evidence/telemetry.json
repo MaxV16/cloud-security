@@ -1,0 +1,68 @@
+{
+  "generated_utc": "2026-11-21T06:03:46.659428+00:00",
+  "region": "eu-west-1",
+  "cloudtrail_event_count": 1,
+  "cloudtrail_events": [
+    {
+      "time": "2026-11-21T05:52:50+00:00",
+      "name": "GetCallerIdentity",
+      "error": null,
+      "key": "AKIAXMVWB7MVLTPKSPCX",
+      "ip": "185.99.26.161",
+      "ua": "aws-cli/2.39.5 md/awscrt#0.38.0 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.14.8 md/pyimpl#CPython m/Z,AR,g,E,b cfg/retry-mode#standard md/installer#exe sid/60dd6cfaabc1 md/prompt#off md/command#sts.get-caller-identity"
+    }
+  ],
+  "cwlogs_lag": [
+    {
+      "name": "GetCallerIdentity",
+      "event_time": "2026-11-21T05:52:50Z",
+      "ingest_utc": "2026-11-21T05:54:02.610000+00:00",
+      "lag_s": 72.6,
+      "error": null
+    }
+  ],
+  "cwlogs_lag_summary": {
+    "n": 1,
+    "min": 72.6,
+    "median": 72.6,
+    "max": 72.6,
+    "mean": 72.6
+  },
+  "lambda_handled": [
+    {
+      "log_ts": 1795240303680,
+      "msg": "{\"message\": \"handled\", \"alert\": \"HONEYTOKEN TRIPPED\", \"detected_at\": \"2026-11-21T05:00:00Z\", \"api_called\": \"GetObject\", \"canary_access_key\": \"AKIAXMVWB7MVLTPKSPCX\", \"source_ip\": \"1.2.3.4\", \"user_agent\": \"test\", \"region\": \"eu-west-1\", \"api_error\": \"none\", \"response\": \"access key AKIAXMVWB7MVLTPKSPCX set to Inactive\", \"key_was_active\": true}"
+    },
+    {
+      "log_ts": 1795240373384,
+      "msg": "{\"message\": \"handled\", \"alert\": \"HONEYTOKEN TRIPPED\", \"detected_at\": \"2026-11-21T05:52:50Z\", \"api_called\": \"GetCallerIdentity\", \"canary_access_key\": \"AKIAXMVWB7MVLTPKSPCX\", \"source_ip\": \"185.99.26.161\", \"user_agent\": \"aws-cli/2.39.5 md/awscrt#0.38.0 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.14.8 md/pyimpl#CPython m/Z,AR,g,E,b cfg/retry-mode#standard md/installer#exe sid/60dd6cfaabc1 md/prompt#off md/command#sts.get-caller-identity\", \"region\": \"eu-west-1\", \"api_error\": \"none\", \"response\": \"access key AKIAXMVWB7MVLTPKSPCX set to Inactive\", \"key_was_active\": true}"
+    },
+    {
+      "log_ts": 1795240530763,
+      "msg": "{\"message\": \"handled\", \"alert\": \"HONEYTOKEN TRIPPED\", \"detected_at\": \"2026-11-21T05:55:23Z\", \"api_called\": \"HeadObject\", \"canary_access_key\": \"AKIAXMVWB7MVLTPKSPCX\", \"source_ip\": \"185.99.26.161\", \"user_agent\": \"[aws-cli/2.39.5 md/awscrt#0.38.0 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.14.8 md/pyimpl#CPython m/AR,G,Z,E,Ag,b cfg/retry-mode#standard md/installer#exe sid/60dd6cfaabc1 md/prompt#off md/command#s3.cp CRTS3NativeClient/1.3.0 platform/unknown m/AY]\", \"region\": \"eu-west-1\", \"api_error\": \"AccessDenied\", \"response\": \"access key AKIAXMVWB7MVLTPKSPCX set to Inactive\", \"key_was_active\": true}"
+    },
+    {
+      "log_ts": 1795240531456,
+      "msg": "{\"message\": \"handled\", \"alert\": \"HONEYTOKEN TRIPPED\", \"detected_at\": \"2026-11-21T05:55:23Z\", \"api_called\": \"HeadObject\", \"canary_access_key\": \"AKIAXMVWB7MVLTPKSPCX\", \"source_ip\": \"185.99.26.161\", \"user_agent\": \"[aws-cli/2.39.5 md/awscrt#0.38.0 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.14.8 md/pyimpl#CPython m/AR,G,Z,E,Ag,b cfg/retry-mode#standard md/installer#exe sid/60dd6cfaabc1 md/prompt#off md/command#s3.cp CRTS3NativeClient/1.3.0 platform/unknown m/AY]\", \"region\": \"eu-west-1\", \"api_error\": \"AccessDenied\", \"response\": \"no action taken\", \"key_was_active\": false}"
+    },
+    {
+      "log_ts": 1795240689014,
+      "msg": "{\"message\": \"handled\", \"alert\": \"HONEYTOKEN TRIPPED\", \"detected_at\": \"2026-11-21T05:58:03Z\", \"api_called\": \"ListObjects\", \"canary_access_key\": \"AKIAXMVWB7MVAVTJFSHR\", \"source_ip\": \"185.99.26.161\", \"user_agent\": \"[aws-cli/2.39.5 md/awscrt#0.38.0 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.14.8 md/pyimpl#CPython m/AR,n,Z,E,C,b cfg/retry-mode#standard md/installer#exe sid/60dd6cfaabc1 md/prompt#off md/command#s3.ls]\", \"region\": \"eu-west-1\", \"api_error\": \"none\", \"response\": \"no action taken\", \"key_was_active\": false}"
+    }
+  ],
+  "lambda_line_count": 23,
+  "alarm_history": [
+    {
+      "time": "2026-11-21T05:57:05.974000+00:00",
+      "summary": "Alarm updated from ALARM to OK"
+    },
+    {
+      "time": "2026-11-21T05:55:05.974000+00:00",
+      "summary": "Alarm updated from OK to ALARM"
+    },
+    {
+      "time": "2026-11-21T05:50:05.973000+00:00",
+      "summary": "Alarm updated from INSUFFICIENT_DATA to OK"
+    }
+  ]
+}

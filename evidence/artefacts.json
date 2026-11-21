@@ -1,0 +1,229 @@
+{
+  "trail": {
+    "Name": "honeytoken-trail",
+    "S3BucketName": "honeytoken-cloudtrail-508261694250",
+    "IsMultiRegionTrail": true,
+    "HomeRegion": "eu-west-1",
+    "LogFileValidationEnabled": true,
+    "CloudWatchLogsLogGroupArn": "arn:aws:logs:eu-west-1:508261694250:log-group:/aws/cloudtrail/honeytoken:*"
+  },
+  "selectors": [
+    {
+      "Name": "ManagementEvents",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory",
+          "Equals": [
+            "Management"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "HoneyBucketDataEvents",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory",
+          "Equals": [
+            "Data"
+          ]
+        },
+        {
+          "Field": "resources.ARN",
+          "StartsWith": [
+            "arn:aws:s3:::prod-backup-credentials-2026-508261694250/"
+          ]
+        },
+        {
+          "Field": "resources.type",
+          "Equals": [
+            "AWS::S3::Object"
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "honeytoken-canary-key": {
+      "pattern": {
+        "source": [
+          "aws.iam",
+          "aws.s3",
+          "aws.secretsmanager",
+          "aws.sts"
+        ],
+        "detail": {
+          "userIdentity": {
+            "accessKeyId": [
+              "AKIAXMVWB7MVLTPKSPCX"
+            ]
+          }
+        }
+      },
+      "state": "ENABLED",
+      "targets": [
+        {
+          "Id": "killswitch",
+          "Arn": "arn:aws:lambda:eu-west-1:508261694250:function:honeytoken-killswitch"
+        },
+        {
+          "Id": "sns",
+          "Arn": "arn:aws:sns:eu-west-1:508261694250:honeytoken-alerts"
+        }
+      ]
+    },
+    "honeytoken-honey-bucket": {
+      "pattern": {
+        "source": [
+          "aws.s3"
+        ],
+        "detail": {
+          "eventSource": [
+            "s3.amazonaws.com"
+          ],
+          "requestParameters": {
+            "bucketName": [
+              "prod-backup-credentials-2026-508261694250"
+            ]
+          }
+        }
+      },
+      "state": "ENABLED",
+      "targets": [
+        {
+          "Id": "killswitch",
+          "Arn": "arn:aws:lambda:eu-west-1:508261694250:function:honeytoken-killswitch"
+        },
+        {
+          "Id": "sns",
+          "Arn": "arn:aws:sns:eu-west-1:508261694250:honeytoken-alerts"
+        }
+      ]
+    }
+  },
+  "lambda": {
+    "FunctionName": "honeytoken-killswitch",
+    "Runtime": "python3.12",
+    "MemorySize": 128,
+    "Timeout": 15,
+    "LastModified": "2026-11-21T05:52:11.000+0000",
+    "policy": "{\"Version\":\"2012-10-17\",\"Id\":\"default\",\"Statement\":[{\"Sid\":\"allow-eventbridge-honeytoken-canary-key\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:eu-west-1:508261694250:function:honeytoken-killswitch\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:events:eu-west-1:508261694250:rule/honeytoken-canary-key\"}}},{\"Sid\":\"allow-eventbridge-honeytoken-honey-bucket\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:eu-west-1:508261694250:function:honeytoken-killswitch\",\"Condition\":{\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:events:eu-west-1:508261694250:rule/honeytoken-honey-bucket\"}}}]}"
+  },
+  "alarm": {
+    "AlarmName": "honeytoken-canary-alarm",
+    "MetricName": "CanaryKeyUsed",
+    "Namespace": "Honeytoken",
+    "Statistic": "Sum",
+    "Period": 60,
+    "EvaluationPeriods": 1,
+    "Threshold": 1.0,
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "TreatMissingData": "notBreaching",
+    "StateValue": "OK"
+  },
+  "metric_filter": "{ ($.userIdentity.accessKeyId = \"AKIAXMVWB7MVLTPKSPCX\") }",
+  "canary_user": {
+    "keys": [
+      {
+        "UserName": "canary-backup-admin",
+        "AccessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+        "Status": "Active",
+        "CreateDate": "2026-11-21 05:47:39+00:00"
+      }
+    ],
+    "policies": [
+      "deny-all"
+    ],
+    "attached": [],
+    "tags": [
+      {
+        "Key": "purpose",
+        "Value": "honeytoken-decoy"
+      }
+    ]
+  },
+  "deny_policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "HoneytokenDenyAll",
+        "Effect": "Deny",
+        "Action": "*",
+        "Resource": "*"
+      }
+    ]
+  },
+  "role_policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "DeactivateCanaryKeyOnly",
+        "Effect": "Allow",
+        "Action": [
+          "iam:UpdateAccessKey",
+          "iam:ListAccessKeys"
+        ],
+        "Resource": "arn:aws:iam::508261694250:user/canary-backup-admin"
+      },
+      {
+        "Sid": "PublishAlert",
+        "Effect": "Allow",
+        "Action": "sns:Publish",
+        "Resource": "arn:aws:sns:eu-west-1:508261694250:honeytoken-alerts"
+      },
+      {
+        "Sid": "OwnLogs",
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "arn:aws:logs:eu-west-1:508261694250:log-group:/aws/lambda/honeytoken-killswitch:*"
+      }
+    ]
+  },
+  "subscriptions": [
+    {
+      "Protocol": "email",
+      "Endpoint": "bundy10169@gmail.com",
+      "SubscriptionArn": "arn:aws:sns:eu-west-1:508261694250:honeytoken-alerts:56009404-330e-40b2-8641-578776091d58"
+    },
+    {
+      "Protocol": "email",
+      "Endpoint": "maks.karakulinn@gmail.com",
+      "SubscriptionArn": "PendingConfirmation"
+    }
+  ],
+  "honey_bucket_objects": [
+    {
+      "Key": "backup/credentials.txt",
+      "Size": 247,
+      "LastModified": "2026-11-21T05:50:52+00:00"
+    },
+    {
+      "Key": "backup/db-dump-2026-09-01.enc",
+      "Size": 2048,
+      "LastModified": "2026-11-21T05:50:52+00:00"
+    }
+  ],
+  "honey_bucket_config": {
+    "versioning": "Enabled",
+    "public_access_block": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": true,
+      "RestrictPublicBuckets": true
+    },
+    "encryption": {
+      "Rules": [
+        {
+          "ApplyServerSideEncryptionByDefault": {
+            "SSEAlgorithm": "AES256"
+          },
+          "BucketKeyEnabled": false
+        }
+      ]
+    }
+  }
+}

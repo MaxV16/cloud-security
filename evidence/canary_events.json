@@ -1,0 +1,339 @@
+[
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T05:52:50Z",
+    "eventSource": "sts.amazonaws.com",
+    "eventName": "GetCallerIdentity",
+    "awsRegion": "eu-west-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "aws-cli/2.39.5 md/awscrt#0.38.0 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.14.8 md/pyimpl#CPython m/Z,AR,g,E,b cfg/retry-mode#standard md/installer#exe sid/60dd6cfaabc1 md/prompt#off md/command#sts.get-caller-identity",
+    "requestParameters": null,
+    "responseElements": null,
+    "additionalEventData": {
+      "ExtendedRequestId": "MTpldS13ZXN0LTE6UzoxNzk1MjQwMzcwMTExOlI6ZmJ5Vm5UYmk=",
+      "RequestDetails": {
+        "awsServingRegion": "eu-west-1",
+        "endpointType": "regional"
+      }
+    },
+    "requestID": "1bded089-31d6-42cf-97c3-3292a53061d3",
+    "eventID": "c7d3dd9c-2096-46b4-8a2c-e0ed622b141c",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Management",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "sts.eu-west-1.amazonaws.com",
+      "keyExchange": "X25519MLKEM768"
+    }
+  },
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T05:55:23Z",
+    "eventSource": "s3.amazonaws.com",
+    "eventName": "HeadObject",
+    "awsRegion": "eu-west-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "[aws-cli/2.39.5 md/awscrt#0.38.0 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.14.8 md/pyimpl#CPython m/AR,G,Z,E,Ag,b cfg/retry-mode#standard md/installer#exe sid/60dd6cfaabc1 md/prompt#off md/command#s3.cp CRTS3NativeClient/1.3.0 platform/unknown m/AY]",
+    "errorCode": "AccessDenied",
+    "errorMessage": "User: arn:aws:iam::508261694250:user/canary-backup-admin is not authorized to perform: s3:GetObject on resource: \"arn:aws:s3:::prod-backup-credentials-2026-508261694250/backup/credentials.txt\" with an explicit deny in an identity-based policy",
+    "requestParameters": {
+      "bucketName": "prod-backup-credentials-2026-508261694250",
+      "Host": "prod-backup-credentials-2026-508261694250.s3.eu-west-1.amazonaws.com",
+      "key": "backup/credentials.txt"
+    },
+    "responseElements": null,
+    "additionalEventData": {
+      "SignatureVersion": "SigV4",
+      "CipherSuite": "TLS_AES_128_GCM_SHA256",
+      "bytesTransferredIn": 0,
+      "startTime": 1795240523657,
+      "AuthenticationMethod": "AuthHeader",
+      "endTime": 1795240523678,
+      "x-amz-id-2": "vKcY2ea7mK44/IerJz9xb72qklWMXJO3pKi3T3LwY3g2LWHsBWKk+ba/Bc8HmNCCMdBBUgwfyHc=",
+      "httpStatusCode": 403,
+      "bytesTransferredOut": 472
+    },
+    "requestID": "ZBMVV5PEM9JNH06E",
+    "eventID": "6b7d5e17-e516-4a4c-82ec-8490f1d08708",
+    "readOnly": true,
+    "resources": [
+      {
+        "accountId": "508261694250",
+        "type": "AWS::S3::Bucket",
+        "ARN": "arn:aws:s3:::prod-backup-credentials-2026-508261694250"
+      },
+      {
+        "type": "AWS::S3::Object",
+        "ARN": "arn:aws:s3:::prod-backup-credentials-2026-508261694250/backup/credentials.txt"
+      }
+    ],
+    "eventType": "AwsApiCall",
+    "managementEvent": false,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Data",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "prod-backup-credentials-2026-508261694250.s3.eu-west-1.amazonaws.com",
+      "keyExchange": "secp256r1"
+    }
+  },
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T06:08:39Z",
+    "eventSource": "sts.amazonaws.com",
+    "eventName": "GetCallerIdentity",
+    "awsRegion": "eu-west-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "Boto3/1.40.61 md/Botocore#1.40.61 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.13.15 md/pyimpl#CPython m/b,D,Z,e cfg/retry-mode#legacy Botocore/1.40.61",
+    "requestParameters": null,
+    "responseElements": null,
+    "additionalEventData": {
+      "ExtendedRequestId": "MTpldS13ZXN0LTE6UzoxNzk1MjQxMzE5Mzc3OlI6T1pnQVBURm0=",
+      "RequestDetails": {
+        "endpointType": "regional",
+        "awsServingRegion": "eu-west-1"
+      }
+    },
+    "requestID": "c5d95e33-2e75-4a98-b8e5-dbbdd12815a2",
+    "eventID": "28bb14c7-5165-4aaf-8b53-9a48dd06fb11",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Management",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "sts.eu-west-1.amazonaws.com",
+      "keyExchange": "secp256r1"
+    }
+  },
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T06:12:46Z",
+    "eventSource": "s3.amazonaws.com",
+    "eventName": "ListBuckets",
+    "awsRegion": "eu-west-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "[Boto3/1.40.61 md/Botocore#1.40.61 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.13.15 md/pyimpl#CPython m/b,D,Z,e cfg/retry-mode#legacy Botocore/1.40.61]",
+    "errorCode": "AccessDenied",
+    "errorMessage": "User: arn:aws:iam::508261694250:user/canary-backup-admin is not authorized to perform: s3:ListAllMyBuckets with an explicit deny in an identity-based policy",
+    "requestParameters": {
+      "Host": "s3.eu-west-1.amazonaws.com"
+    },
+    "responseElements": null,
+    "additionalEventData": {
+      "SignatureVersion": "SigV4",
+      "CipherSuite": "TLS_AES_128_GCM_SHA256",
+      "bytesTransferredIn": 0,
+      "startTime": 1795241566672,
+      "AuthenticationMethod": "AuthHeader",
+      "endTime": 1795241566681,
+      "x-amz-id-2": "IIQ9+Sck88dqP6x93ENeDf/7nEsnPA7R5xPuoCbGS4Hin0gN25FVokIeUZ6ak/909vP/RG99zJeyZnH8tHMlFqNPdVGpqnyx",
+      "httpStatusCode": 403,
+      "bytesTransferredOut": 406
+    },
+    "requestID": "WNT67CJ4AW54SN5K",
+    "eventID": "0b6776c4-cf97-4d38-8f02-846b6d8d5c75",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Management",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "s3.eu-west-1.amazonaws.com",
+      "keyExchange": "x25519"
+    }
+  },
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T06:19:30Z",
+    "eventSource": "sts.amazonaws.com",
+    "eventName": "GetCallerIdentity",
+    "awsRegion": "eu-west-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "Boto3/1.40.61 md/Botocore#1.40.61 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.13.15 md/pyimpl#CPython m/D,Z,b,e cfg/retry-mode#legacy Botocore/1.40.61",
+    "requestParameters": null,
+    "responseElements": null,
+    "additionalEventData": {
+      "ExtendedRequestId": "MTpldS13ZXN0LTE6UzoxNzk1MjQxOTcwOTMwOlI6d25XQ0ZMRWk=",
+      "RequestDetails": {
+        "awsServingRegion": "eu-west-1",
+        "endpointType": "regional"
+      }
+    },
+    "requestID": "2680c63b-91b1-4340-baaf-2523adc71a8f",
+    "eventID": "facea7e6-e54d-4255-94e5-811fa7f1cd89",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Management",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "sts.eu-west-1.amazonaws.com",
+      "keyExchange": "secp256r1"
+    }
+  },
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T06:22:25Z",
+    "eventSource": "s3.amazonaws.com",
+    "eventName": "ListBuckets",
+    "awsRegion": "eu-west-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "[Boto3/1.40.61 md/Botocore#1.40.61 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.13.15 md/pyimpl#CPython m/D,Z,b,e cfg/retry-mode#legacy Botocore/1.40.61]",
+    "errorCode": "AccessDenied",
+    "errorMessage": "User: arn:aws:iam::508261694250:user/canary-backup-admin is not authorized to perform: s3:ListAllMyBuckets with an explicit deny in an identity-based policy",
+    "requestParameters": {
+      "Host": "s3.eu-west-1.amazonaws.com"
+    },
+    "responseElements": null,
+    "additionalEventData": {
+      "SignatureVersion": "SigV4",
+      "CipherSuite": "TLS_AES_128_GCM_SHA256",
+      "bytesTransferredIn": 0,
+      "startTime": 1795242145357,
+      "AuthenticationMethod": "AuthHeader",
+      "endTime": 1795242145367,
+      "x-amz-id-2": "sAzY9CegVDKmaAtQC5XQxBF5fnL0Qnzm2Wo8nsUBwz1YckxIWZMMKSgbXb5n4GI2R8tZ3HLzeb7TqAb/BmSQnWQtFsHqFHV/",
+      "httpStatusCode": 403,
+      "bytesTransferredOut": 406
+    },
+    "requestID": "EYMX62CM7W714QXD",
+    "eventID": "007f1396-ea12-4186-adc8-c8c5095efcc7",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Management",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "s3.eu-west-1.amazonaws.com",
+      "keyExchange": "x25519"
+    }
+  },
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T06:27:36Z",
+    "eventSource": "iam.amazonaws.com",
+    "eventName": "ListUsers",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "Boto3/1.40.61 md/Botocore#1.40.61 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.13.15 md/pyimpl#CPython m/D,Z,b,e cfg/retry-mode#legacy Botocore/1.40.61",
+    "errorCode": "AccessDenied",
+    "errorMessage": "User: arn:aws:iam::508261694250:user/canary-backup-admin is not authorized to perform: iam:ListUsers on resource: arn:aws:iam::508261694250:user/ with an explicit deny in an identity-based policy. Go to https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/authorization-details/d4hwpskakorach3kwz2hzc8yc for complete details, or call the GetRequestAuthorizationDetails API with the following authorization id: d4hwpskakorach3kwz2hzc8yc",
+    "requestParameters": null,
+    "responseElements": null,
+    "requestID": "7348128d-d098-4d16-ae9b-dab2de0ef891",
+    "eventID": "84ab92c8-c2a9-43aa-8375-149a12087fce",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Management",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "iam.amazonaws.com"
+    }
+  },
+  {
+    "eventVersion": "1.11",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAXMVWB7MVGCVPWQBUV",
+      "arn": "arn:aws:iam::508261694250:user/canary-backup-admin",
+      "accountId": "508261694250",
+      "accessKeyId": "AKIAXMVWB7MVLTPKSPCX",
+      "userName": "canary-backup-admin"
+    },
+    "eventTime": "2026-11-21T06:31:42Z",
+    "eventSource": "iam.amazonaws.com",
+    "eventName": "ListUsers",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "185.99.26.161",
+    "userAgent": "Boto3/1.40.61 md/Botocore#1.40.61 ua/2.1 os/windows#11 md/arch#amd64 lang/python#3.13.15 md/pyimpl#CPython m/D,b,e,Z cfg/retry-mode#legacy Botocore/1.40.61",
+    "errorCode": "AccessDenied",
+    "errorMessage": "User: arn:aws:iam::508261694250:user/canary-backup-admin is not authorized to perform: iam:ListUsers on resource: arn:aws:iam::508261694250:user/ with an explicit deny in an identity-based policy. Go to https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/authorization-details/59kqhyaw8g3p2tzgkgtvucooc for complete details, or call the GetRequestAuthorizationDetails API with the following authorization id: 59kqhyaw8g3p2tzgkgtvucooc",
+    "requestParameters": null,
+    "responseElements": null,
+    "requestID": "fac50d8f-0b9b-47aa-a623-02da94914b70",
+    "eventID": "fa7e8c4e-5737-4207-a849-bb02e87e6aab",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "508261694250",
+    "eventCategory": "Management",
+    "tlsDetails": {
+      "tlsVersion": "TLSv1.3",
+      "cipherSuite": "TLS_AES_128_GCM_SHA256",
+      "clientProvidedHostHeader": "iam.amazonaws.com"
+    }
+  }
+]

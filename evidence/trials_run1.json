@@ -1,0 +1,18 @@
+[
+  {
+    "trial": "S6",
+    "api_called": "GetCallerIdentity",
+    "outcome": "success",
+    "error_code": null,
+    "propagation_wait_s": 0,
+    "client_time": "2026-11-21T06:08:42.173830+00:00",
+    "cloudtrail_event_time": "2026-11-21T06:08:39Z",
+    "lambda_log_time": "2026-11-21T06:08:42.616000+00:00",
+    "path_a_latency_s": 3.6,
+    "path_b_log_latency_s": 124.2,
+    "path_b_alarm_latency_s": -813.0,
+    "key_after": [
+      "Inactive"
+    ]
+  }
+]

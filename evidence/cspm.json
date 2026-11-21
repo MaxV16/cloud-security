@@ -1,0 +1,65 @@
+{
+  "intro": "We ran Prowler 5.51.0 against the account with the decoys already in place, first as it stood and then again after the hardening changes described below. The first scan returned 203 failing findings across 71 checks out of 563 results; the second returned 198 failures out of 566 results. 9 checks moved from fail to pass, but enabling the GuardDuty detector also brought four failing checks into existence that the first scan never ran, so the net drop is five. The account is a shared lab account, so most of what Prowler reports has nothing to do with this project. Table 5 keeps only the checks that we either fixed or decided to accept, because those are the ones that say something about the design.",
+  "findings": [
+    [
+      "IAM account password policy (7 CIS checks)",
+      "Fail",
+      "Partial (6/7)",
+      "Set to 14 characters, upper, lower, number, symbol and 24-password reuse. Max age stayed at 365 days, so the 90-day check still fails."
+    ],
+    [
+      "S3 account-level public access block",
+      "Fail",
+      "Pass",
+      "One call at account level; no bucket can be made public by accident after this."
+    ],
+    [
+      "GuardDuty detector enabled",
+      "Fail",
+      "Pass",
+      "Free trial for 30 days, then usage-based. Worth having even though we built our own detection."
+    ],
+    [
+      "EC2 AMI account block public access",
+      "Pass",
+      "Pass",
+      "Already on before the scan. It is in the table because a control that passes before you start is worth as much as one you fix."
+    ],
+    [
+      "IAM user has MFA (admin and canary)",
+      "Partial (1/6)",
+      "Partial (1/6)",
+      "Left failing on purpose for the canary. The admin user is a lab identity with no console password, so MFA does not apply."
+    ],
+    [
+      "IAM access keys rotated within 90 days",
+      "Partial (3/4)",
+      "Partial (3/4)",
+      "The canary key is deliberately older than 90 days: a decoy key that was rotated yesterday looks maintained, but an old one is more believable."
+    ],
+    [
+      "Lambda environment variables encrypted with a CMK",
+      "Partial (4/14)",
+      "Partial (4/14)",
+      "Our kill switch stores the topic ARN and user name, not secrets, so we accept the AWS-managed key. A CMK is about $1/month."
+    ],
+    [
+      "SNS topic encrypted with KMS",
+      "Fail",
+      "Fail",
+      "Alert messages contain the access key ID and source IP, so a CMK would be the right call in production."
+    ],
+    [
+      "CloudTrail destination bucket access logging",
+      "Fail",
+      "Fail",
+      "Would need a second bucket to log access to the log bucket; out of scope for a four-week lab."
+    ]
+  ],
+  "caption": "CSPM findings before and after hardening, with the reason each one was fixed or accepted.",
+  "after": [
+    "The most useful result is not the number that went down. It is that Prowler cannot tell a decoy from a mistake. The canary user fails the same checks as a neglected account: an old access key, no MFA, an inline policy that grants nothing. A reviewer looking only at the CSPM report would flag the canary as a problem to fix, and fixing it would make the decoy less believable. Our answer is a tag-based exclusion: the user carries `purpose=honeytoken-decoy`, and the CSPM mutelist is scoped to that tag rather than to the account, so a real user with the same findings would still be reported.",
+    "The second thing worth saying is that the cheap fixes are cheap. The password policy, the account-level public access block and the GuardDuty detector took four API calls and about a minute, and they closed nine checks between them. GuardDuty is the only one with a bill attached once the trial ends. That is a useful contrast with the honeytoken work, which took most of a week to build for one detection scenario.",
+    "We did not try to get the account to a clean report. Some of the remaining findings are structural: a trail bucket without access logging, SNS without a customer-managed key, and CloudWatch log groups without a KMS key. Each one costs money or a second bucket, and none of them change whether the trap works. Saying that out loud matters more than a green dashboard."
+  ]
+}
